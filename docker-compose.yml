@@ -1,0 +1,38 @@
+version: "3"
+services:
+
+  track-service:
+    build: track-service/.
+    container_name: track-service-Mongo
+    ports:
+      - '8000:8000'
+
+
+  #  Container for ApiGateway
+  #  docker run -d --name api-gateway -p 8090:8090  <image_name>
+  api-gateway:
+    build: api-gateway/.
+    container_name: api-gateway
+    ports:
+      - '8080:8080'
+  #  Container for ConfigServer
+  #  docker run -d --name config-server -p 8891:8891  <image_name>
+  config-server:
+    build: config-server/.
+    container_name: config-server
+    ports:
+      - '8888:8888'
+  #  Container for EurekaServer
+  #  docker run -d --name eureka-server -p 8080:8080  <image_name>
+  eureka-server:
+    build: eureka-service/.
+    container_name: eureka-server
+    ports:
+      - '8082:8082'
+  #  Container for userService
+  # docker run -d --name user-service -p 8081:8081 <image>
+  user-services:
+    build: user-services/.
+    container_name: user-service
+    ports:
+      - '8087:8087'
